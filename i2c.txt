@@ -1,0 +1,9 @@
+init()
+start()
+send(0xd0) , rw bit 0
+send(0x00), seconds address
+restart() ???? 
+send(0xd1), rw bit 1 !! important
+readbytes from register
+stop()
+while(1) {}
