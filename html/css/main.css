@@ -88,7 +88,7 @@ nav > ul > li > a:hover {
 
 /* MAIN SECTION */
 main {
-    background: #825513;
+    background: #451804;
     min-height:  200px;
 }
 
@@ -100,7 +100,7 @@ main {
 .contentBox {
     flex: 1;
     min-height: 100px;
-    background:  #BC914F;
+    background:  #e77d11;
     margin:  50px 10px;
     position:  relative;
 }
@@ -112,7 +112,7 @@ main {
     width:  15em;
     position: absolute;
     top: -7.5em;
-    border: 5px solid #fda600;
+    /* border: 1px solid #fda600; */
     z-index: 1;
 }
 
