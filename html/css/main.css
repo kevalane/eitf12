@@ -1,0 +1,155 @@
+/* Fonts */
+@font-face {
+    font-family: 'Bree Serif';
+    src: url('../fonts/BreeSerif-Regular.ttf') format('truetype');
+}
+
+/* Global styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #fff;
+    font-family: 'Bree Serif', arial, serif;
+}
+
+p {
+    color:  #fff;
+    font-family: 'Roboto Condensed', arial, sans-serif;
+}
+
+/* The container deciding max-width */
+.container {
+    max-width: 75em;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* End global styles */
+
+/* Header section */
+header {
+    background-image: url('../img/headerBackground.jpeg');
+    background-size: cover;
+    min-height: 400px;
+    font-family: 'Roboto Condensed';
+}
+
+#logoName {
+    display: inline-block;
+    padding-left: 1.5em;
+}
+
+#logoName > a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#catchPhrase {
+    text-align: center;
+    margin-top: 3em;
+}
+
+#hiddenTitle {
+    display: none;
+    text-align: center;
+}
+
+/* Navbar styles */
+nav > ul {
+    margin: 0;
+    padding: 1.5em;
+    list-style: none;
+    float: right;
+}
+
+nav > ul > li {
+    display: inline;
+    padding: 1em;
+}
+
+nav > ul > li > a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+nav > ul > li > a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+/* End navbar styles */
+/* End header section */
+
+
+/* MAIN SECTION */
+main {
+    background: #825513;
+    min-height:  200px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contentBox {
+    flex: 1;
+    min-height: 100px;
+    background:  #BC914F;
+    margin:  50px 10px;
+    position:  relative;
+}
+
+/* Styles on all three images */
+.contentBoxImage {
+    border-radius: 50%;
+    height: 15em;
+    width:  15em;
+    position: absolute;
+    top: -7.5em;
+    border: 5px solid #fda600;
+    z-index: 1;
+}
+
+/* Styling of center image */
+#mainImage {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Right image style */
+#rightImage {
+    right: 0;
+}
+
+.contentArticle {
+    margin-top:  8.5em;
+    padding:  1em;
+}
+/* END MAIN SECTION */
+
+/* FOOTER */
+footer {
+    background: #b1b1b1;
+}
+
+.footerBox {
+    width:  33%;
+}
+
+.footerArticle {
+    padding:  1em;
+    margin-left:  auto;
+    margin-right:  auto;
+    min-width:  10em;
+    max-width: 25%;
+}
+/* END FOOTER SECTION */
+

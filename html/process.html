@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <title>Kevin Rasmusson</title>
+
+    <!-- Stylesheet and font imports -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="stylesheet" href="css/why.css" type="text/css">
+    <link rel="stylesheet" href="css/rwd.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+</head>
+<body>
+<!-- Header section -->
+<header>
+    <div class="container">
+        <!-- Navbar -->
+        <nav>
+            <h2 id="logoName"><a href="index.html">JKM Holding</a></h2>
+            <ul>
+                <li><a href="why.html">Varför?</a></li>
+                <li><a href="process.html">Process</a></li>
+                <li><a href="https://github.com/kevalane/htmlcss" target="_BLANK">Github</a></li>
+            </ul>
+        </nav><!-- End navbar -->
+        <h1 id="hiddenTitle">JKM Holding AB</h1>
+        <h1 id="catchPhrase">Processanalys.</h1>
+    </div><!-- End container -->
+</header><!-- End header section -->
+
+<main>
+    <div class="container">
+        <article>
+            <!-- The process text -->
+            <h2 id="processTitle">Inledning</h2>
+            <p>Processanalysen skrevs mestadels jämsides med att jag skrev hemsidan, således kommer ordningen på underpunkterna att vara den ordningen som jag implementerade delarna på hemsidan.</p>
+
+            <h2>Container-taggen</h2>
+            <p>Container taggen (som påträffas både i header, footer och main) har som uppgift att lämna whitespace vid sidorna givet att skärmen är bredare än 75em. Varför siffran 75em? Den är convertad från 1200px till em (basfont 16), först och främst, men för det andra kommer den ifrån bootstrap som jag jobbar flitigt med. Visserligen ser jag nu att dem använder 1140px, men nära nog. Centreringen och användningen av max-width ger funktionen jag är ute efter - dvs exakt samma som erbjuds av container-fluid med bootstrap. (W3Schools, 2021)</p>
+
+            <h2>Semantic code</h2>
+            <p>Generellt, igenom hela arbetet har jag försökt undvika att använda divs, och istället tillämpa semantic code, nämligen att använda redan förbestämda taggar. Fördelarna med detta är många. Dels blir det lättare för datorn att fatta & läsa vad du har skrivit, något som är essentiellt för bland annat synskadades upplevelse på webbsidor. Vidare gör det det lättare för andra programmerare att läsa koden, eftersom en stängningstagg med section är mycket tydligare än en div (ännu värre om div-stängningen inte är kommenterad.) (Boag, 2005)</p>
+
+            <h2>Header elementet</h2>
+            <p>Det som skulle kunna vara intressantast att diskutera här var mitt val att använda background-image på header-elementet istället för att lägga in en img tagg. Främsta anledningen var för att jag läste en punkt längre ned som var att vi skulle anpassa sidan för att printas, och vet att background-image element inte följer med i det fallet. (Tyler, 2021)</p>
+
+            <p>I enlighet med exemplet på processanalysen tänkte jag diskutera lite om navbarens position och varför jag använder "ul." Angående ul är det rimligast eftersom det helt enkelt är en lista som vi gör, något som stärks av W3Schools. (W3Schools (2), 2021) Vidare kom jag fram till att jag ville stylea hover state, eftersom det ger bättre UX att ha ett hover state, användaren "vet" att det är något som är klickbart. Anledningen till att jag applicerade float:right; var eftersom jag ville att navigationen skulle vara separerat ifrån logoTexten (JKM Holding) för att underlätta navigation och göra det tydligare. Det är väldigt viktigt att göra navigation tydligt för att undvika irritation hos användaren, bl.a. genom att placera den någonstans där dem är vana att påträffa den (top right). (Miller, 2020)</p>
+
+            <h2>Flexbox (min favvo) vs float vs grid</h2>
+            <p>I kursen hade vi genomgång av både flexbox och float, därav valde jag att inte köra med grid. (Jag har tillika inte lärt mig grid, tog ett lite för långt hopp 'kanske' och gick direkt på bootstrap för mobile responsive layouts). Iallafall, enligt artikeln titulerad "CSS layouts" Kommer fram till att när det gäller practical use är det (1) Grids (2) Flexbox (3) Floats, och med browser support (1) Floats (2) Flexbox (3) CSS Grids. Flexbox hamnar i mitten på båda, vilket skulle kunna tala för det som ett "best of both worlds." Dock talar artikeln även om enkelheten i att applicera float, varför jag kom fram till att det var lättare att använda float: right i navbaren, istället för att jag skulle in och mecka med en flexbox. Å andra sidan återkom jag med flexbox användandet i footern, för att ge möjlighet att centrera elementen enligt mockupen. (Taneja, 2020)</p>
+
+            <h2>"Bildproblemet"</h2>
+            <p>Hur valde jag då att lösa "bildproblemet"? Mer specifikt, bilderna i de tre kolumner som presenteras på startsidan. Så fort jag såg layouten så tänkte jag på att göra contentBox till relative och sedan bilden till position: absolute och ge en negativ top: margin. Det finns dock många saker att akta sig för när man använder sig av position absolute, eftersom elementet inte längre "trycker undan" dem andra elementen. Detta är inga problem i desktopsidan, men uppdagades på mobilversionerna. Därför, om man undersöker rwd.css så ser man att jag har lagt till margin-top på elementen som faller under huvud (mitten) elementet. Detta eftersom bilderna inte ger upphov till någon egen margin, vilket gjorde att hemsidan "gick sönder" till en början. Dock, när jag använder position: absolute vet jag att bilden alltid ligger där jag vill att den ska (uppe i vänstra hörnet, i mitten, i högra hörnet) oavsett hur brett grundelementet är (Läs vid mindre upplösningen och flexbox gör att den blir bredare.) Detta gjorde det även lättare för mig att centrera dem i ett senare skede (med mina media queries). Rent praktiskt delade jag även upp i id och klasstaggar, eftersom vissa styles var applicerbara på alla tre bilder, medan en del (läs alignment) var specifikt för diverse bilder. (Coyier, 2020)</p>
+
+            <h2>Media queries</h2>
+            <p>W3Schools har i sin sida med media queries en sektion titlad "Typical Device Breakpoints." Därifrån kom mina breakpoints. Sub 600px => mobilvy, 600 &lt; x &lt; 992 ger vy för tablets, och över 992px ger desktop, allt i enligthet med deras breakpoints (om än något förenklat.) Jag tog dessa tre eftersom jag anser att det är dem tre vanligaste, samt för pluspoäng om man implementerar en unik style för något mer än bara mobil och desktop. (W3Schools (3), 2021)</p>
+
+            <p>Vad som faktiskt händer vid dessa brytpunkter var jag inne på något tidigare. Dels lade jag till lite margins eftersom position: absolute; bilderna förstörde på den fronten. Vidare centrerade jag bilderna istället, enligt mockup, eftersom det skulle se väldigt konstigt ut med vönster respektive högerjustering på mobilversionen. Utöver det lärde jag mig om order: 1; (eller 2, 3) vilket löste problemet med att lägga huvudelementet överst på mobil respektive tablet. Jag valde även att göra designen 100% för huvudelementet och 5050 för dem andra två på tablet, för att erbjuda en annan upplevelse och påvisa kunskaper om den media queryn. (Mozilla, 2021)</p>
+
+            <p>Angående @media print så var det en query jag inte kunde innan detta projekt, dessvärre. Inte riktigt något jag anpassat mina hemsidor till tidigare, men intressant att höra att efterfrågan på funktionaliteten fanns. Klickade helt enkelt på cmd P och såg att det såg rätt konstigt ut, och gjorde ändringar därefter. Gjorde minheight på header lägre för att undvika whitespace, display none på nav, lade in en "hidden title" för att man skall veta att det handlar om JKM Holding även när man printar. (W3Schools (3), 2021)</p>
+
+            <h2>Angående em vs px vs rem</h2>
+            <p>Använder em istället för px på dem flesta ställen (där jag inte glömt det, hehe). Detta eftersom pixlar är ett fast antal, och om du då kliver upp på en högresolutionskärm så ser det väldigt annorlunda ut gentemot på din egen laptop (givet att den inte är 5k, hehe). Detta var något jag påträffade väldigt tidigt, och har efter det i princip "fastnat" i att använda em. Skulle även kunna gå över till rem, men det handlar väl åter om vana. Källreferensen visar på detta bra i min mening. (Ikeanyi, 2021)</p>
+
+
+
+            <!-- Sources -->
+            <h2>Källor</h2>
+            <p>Boag, P. 2005. <em>Semantic code: What? How? Why?.</em> [online] Boagworld.com. Available at &lt;<a href="https://boagworld.com/dev/semantic-code-what-why-how/" target="_BLANK">https://boagworld.com/dev/semantic-code-what-why-how/</a>> [Accessed 8 July 2021]</p>
+
+            <p>Coyier, C. 2020. <em>Absolute, Relative, Fixed Positioning: How Do They Differ?</em> [online] Css-tricks.com. Available at &lt;<a href="https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/" target="_BLANK">https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/</a>> [Accessed 8 July 2021]</p>
+
+            <p>Ikeanyi, C. 2021. <em>Sizing in CSS: px vs em vs rem</em> [online] chiamakaikeanyi.dev. Available at &lt;<a href="https://chiamakaikeanyi.dev/sizing-in-css-px-vs-em-vs-rem/#:~:text=px%20is%20not%20scalable%2C%20it%20is%20an%20absolute%20unit.&text=Element%20(%20em%20)%20and%20Root%20element,the%20value%20of%20relative%20units" target="_BLANK">https://chiamakaikeanyi.dev/sizing-in-css-px-vs-em-vs-rem/#:~:text=px%20is%20not%20scalable%2C%20it%20is%20an%20absolute%20unit.&text=Element%20(%20em%20)%20and%20Root%20element,the%20value%20of%20relative%20units</a>> [Accessed 8 July 2021]</p>
+
+            <p>Miller, R. 2020.<em>Website navigation: Tips, Examples and Best Practices.</em> [online] Crazyegg.com. Available at &lt;<a href="https://www.crazyegg.com/blog/website-navigation/" target="_BLANK">https://www.crazyegg.com/blog/website-navigation/</a>> [Accessed 8 July 2021]</p>
+
+            <p>Mozilla, 2021.<em>Ordering Flex Items</em> [online] developer.mozilla.org. Available at &lt;<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Ordering_Flex_Items" target="_BLANK">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Ordering_Flex_Items</a>> [Accessed 8 July 2021]</p>
+
+            <p>Taneja, M. 2020. <em>CSS Layouts</em> [online] Medium.com. Available at &lt;<a href="https://medium.com/@madhur.taneja/css-layouts-cced6c7a8764" target="_BLANK">https://medium.com/@madhur.taneja/css-layouts-cced6c7a8764</a>> [Accessed 8 July 2021]</p>
+
+            <p>Tyler, H. 2021. <em>When to use CSS background-image</em> [online] Stackoverflow.com. Available at &lt;<a href="https://stackoverflow.com/questions/492809/when-to-use-img-vs-css-background-image" target="_BLANK">https://stackoverflow.com/questions/492809/when-to-use-img-vs-css-background-image</a>> [Accessed 8 July 2021]</p>
+            <p>W3Schools, 2021. <em>Bootstrap 4 Containers.</em> [online] W3schools.com. Available at &lt;<a href="https://www.w3schools.com/bootstrap4/bootstrap_containers.asp" target="_BLANK">https://www.w3schools.com/bootstrap4/bootstrap_containers.asp</a>> [Accessed 8 July 2021]</p>
+
+            <p>W3Schools (2), 2021. <em>CSS Navigation Bar.</em> [online] W3schools.com. Available at &lt;<a href="https://www.w3schools.com/css/css_navbar.asp" target="_BLANK">https://www.w3schools.com/css/css_navbar.asp</a>> [Accessed 8 July 2021]</p>
+
+            <p>W3Schools (3), 2021. <em>Responsive Web Design - Media Queries</em> [online] W3schools.com. Available at &lt;<a href="https://www.w3schools.com/css/css_rwd_mediaqueries.asp" target="_BLANK">https://www.w3schools.com/css/css_rwd_mediaqueries.asp</a>> [Accessed 8 July 2021]</p>
+        </article>
+    </div><!-- End container -->
+</main>
+
+<!-- Footer section -->
+<footer>
+    <!-- Container to look like navbar in width -->
+    <div class="container">
+        <!-- Required container for flexbox -->
+        <div class="flex-container">
+            <section class="footerBox">
+                <article class="footerArticle">
+                    <h2>Adress</h2>
+                    <p>Kämnärsvägen 31E</p>
+                    <p>22646 Lund</p>
+                </article>
+            </section>
+            <section class="footerBox">
+                <article class="footerArticle">
+                    <h2>Telefon</h2>
+                    <p><a href="tel:+46730606590">+46 73 060 65 90</a></p>
+                    <p>Tillgänglig 09:00-02:00</p>
+                </article>
+            </section>
+            <section class="footerBox">
+                <article class="footerArticle">
+                    <h2>E-post</h2>
+                    <p><a href="mailto:kevin@jkmholding.com">kevin@jkmholding.com</a></p>
+                    <p>Svarstid &lt; 1 arbetsdag</p>
+                </article>
+            </section>
+        </div><!-- End flex container -->
+    </div><!-- End container -->
+</footer>
+<!-- End footer -->
+</body>
+</html>
