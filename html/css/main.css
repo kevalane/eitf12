@@ -26,7 +26,7 @@ p {
 
 /* The container deciding max-width */
 .container {
-    max-width: 75em;
+    max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -133,6 +133,15 @@ main {
     margin-top:  8.5em;
     padding:  1em;
 }
+
+article {
+	padding: 2em 2em;
+}
+
+#processTitle {
+	padding: 0;
+	margin-top: 0;
+}
 /* END MAIN SECTION */
 
 /* FOOTER */
@@ -145,9 +154,9 @@ footer {
 }
 
 .footerArticle {
-    padding:  1em;
-    margin-left:  auto;
-    margin-right:  auto;
+    padding:  2em;
+    /* margin-left:  auto;
+    margin-right:  auto; */
     min-width:  10em;
     max-width: 25%;
 }
