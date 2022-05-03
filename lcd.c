@@ -53,6 +53,10 @@ void LCD_String_xy(char row, char pos, char* str) {
 		LCD_Command((pos & 0x0f)|0x80);
 	} else if (row == 1 && pos < 16) {
 		LCD_Command((pos & 0x0f)|0xc0);
+	} else if (row == 2 && pos < 16) {
+		LCD_Command((pos & 0x0f)|0x94);
+	} else if (row == 3 && pos < 16) {
+		LCD_Command((pos & 0x0f)|0xd4);
 	}
 	LCD_String(str);
 }

@@ -14,8 +14,11 @@
 #include "lcd.h"
 #include "mm74c922.h"
 #include "led.h"
+#include "yfs401.h"
+#include "valve.h"
 
 volatile uint8_t kb_val;
+volatile int counter;
 
 int main(void)
 {
@@ -23,67 +26,37 @@ int main(void)
 	LCD_Init(); // init LCD
 	kb_init(); // init keyboard
 	led_init(); // init LED
-	int data;
+	flow_init(); // init flow interrupt pin
+	init_valve(); // init valve
 	sei();
-
-	LCD_String("Hello");
-	LCD_Command(0xc0);
-	LCD_String("World");
-	LCD_Command(0x94);
-	LCD_String("on");
-	LCD_Command(0xd4);
-	LCD_String("4 rows!!!");
+	
+	//counter = 0;
+	start_menu();
+	
 	
     while (1) 
     {
+		open_valve();
+		_delay_ms(1000);
+		close_valve();
+		_delay_ms(1000);
 		//rtc_set_clock_format(HOUR_24);
-		//rtc_start_clock();
-		rtc_read_clock();
+		rtc_start_clock();
+		//LCD_String(counter);
     }
+}
+
+ISR(INT1_vect) {
+	counter++;
+	if (counter > 10) {
+		close_valve();
+	}
 }
 
 ISR (INT0_vect)          //External interrupt_zero ISR
 {
 	kb_val = kb_get_value();
-	switch (kb_val) {
-		case 0:
-			led_turn_on();
-			break;
-		case 1:
-			led_turn_off();
-			break;
-		case 2:
-			led_toggle();
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
-			break;
-		case 8:
-			break;
-		case 9:
-			break;
-		case 10:
-			break;
-		case 11:
-			break;
-		case 12:
-			break;
-		case 13:
-			break;
-		case 14:
-			break;
-		case 15:
-			break;
-		default:
-			break;
-	}
+	handle_key_pressed(kb_val);
 }
 
 
