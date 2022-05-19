@@ -10,8 +10,10 @@
 #define VALVE_H_
 
 #include <avr/io.h>
-#define VALVE_PIN (1 << PD0)
-uint8_t open;
+#define VALVE1_PIN (1 << PD0)
+#define VALVE2_PIN (1 << PD1)
+uint8_t open_1;
+uint8_t open_2;
 
 void init_valve(void);
 void open_valve(void);

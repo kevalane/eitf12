@@ -18,7 +18,6 @@
 #define KB_D		(1 << PA4) // 0b00010000
 #define KB_AVAIL	(1 << PD2) // INT0
 
-void kb_init(void);
 uint8_t kb_get_value(void);
 
 #endif /* MM74C922_H_ */

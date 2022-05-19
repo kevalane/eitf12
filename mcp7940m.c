@@ -34,7 +34,7 @@ void rtc_read_clock(void) {
 	int raw_seconds;
 	int raw_minutes;
 	int raw_hours;
-	twi_start(SLA_W);
+	uint8_t test = twi_start(SLA_W);
 	twi_write(0x00);
 	twi_start(SLA_R);
 	raw_seconds = twi_read_ack();
@@ -43,7 +43,21 @@ void rtc_read_clock(void) {
 	uint8_t seconds = serialize_seconds(raw_seconds);
 	uint8_t minutes = serialize_minutes(raw_minutes);
 	uint8_t hours = serialize_hours(raw_hours);
+	// set global vars
+	currentSeconds = seconds;
+	currentMinutes = minutes;
+	currentHours = hours;
 	twi_stop();
+}
+
+void rtc_set_time(uint8_t hours, uint8_t minutes, uint8_t seconds) {
+	twi_start(SLA_W);
+	twi_write(0x00);
+	twi_write(deserialize_seconds(seconds));
+	twi_write(deserialize_others(minutes));
+	twi_write(deserialize_others(hours));
+	twi_stop();
+	//rtc_start_clock();
 }
 
 uint8_t serialize_seconds(int raw_seconds) {
@@ -65,4 +79,21 @@ uint8_t serialize_hours(int raw_hours) {
 	uint8_t tens = (uint8_t) (raw_hours & 0b00110000);
 	tens = (tens >> 4);
 	return ones + tens*10;
+}
+
+uint8_t deserialize_seconds(uint8_t seconds) {
+	uint8_t firstDigit = seconds % 10;
+	uint8_t secondDigit = seconds / 10;
+	uint8_t returnInt = firstDigit;
+	returnInt |= (secondDigit << 4);
+	returnInt |= 0b10000000;
+	return returnInt;
+}
+
+uint8_t deserialize_others(uint8_t m) {
+	uint8_t firstDigit = m % 10;
+	uint8_t secondDigit = m / 10;
+	uint8_t returnInt = firstDigit;
+	returnInt |= (secondDigit << 4);
+	return returnInt;
 }

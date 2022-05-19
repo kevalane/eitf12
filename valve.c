@@ -8,21 +8,37 @@
 #include "valve.h"
 
 void init_valve(void) {
-	DDRD |= VALVE_PIN;
-	open = 0;
+	DDRD |= VALVE1_PIN;
+	DDRD |= VALVE2_PIN;
+	open_1 = 0;
 }
 
-void open_valve(void) {
-	PORTD |= VALVE_PIN;
-	open = 1;
+void open_valve_1(void) {
+	PORTD |= VALVE1_PIN;
+	open_1 = 1;
 }
 
-void close_valve(void) {
-	PORTD &= ~VALVE_PIN;
-	open = 0;
+void close_valve_1(void) {
+	PORTD &= ~VALVE1_PIN;
+	open_1 = 0;
 }
 
-void toggle_valve(void) {
-	if (open) close_valve();
-	if (!open) open_valve();
+void toggle_valve_1(void) {
+	if (open_1) close_valve_1();
+	if (!open_1) open_valve_1();
+}
+
+void open_valve_2(void) {
+	PORTD |= VALVE2_PIN;
+	open_2 = 1;
+}
+
+void close_valve_2(void) {
+	PORTD &= ~VALVE2_PIN;
+	open_2 = 0;
+}
+
+void toggle_valve_2(void) {
+	if (open_2) close_valve_2();
+	if (!open_2) open_valve_2();
 }
